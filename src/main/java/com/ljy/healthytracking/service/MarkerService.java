@@ -37,4 +37,6 @@ public class MarkerService {
         return markerRepository.findByNoted();
     }
 
+    public List<Marker> findByDistance(Float e_boundary, Float w_boundary, Float s_boundary, Float n_boundary){return markerRepository.findByDistance(e_boundary,w_boundary,s_boundary,n_boundary);}
+
 }

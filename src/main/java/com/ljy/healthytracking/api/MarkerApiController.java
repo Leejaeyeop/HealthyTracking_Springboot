@@ -52,6 +52,24 @@ public class MarkerApiController {
         return parseToJSON(markers).toString();
     }
 
+    @GetMapping("/distance")
+    public String findByDistance(@RequestParam HashMap<String,Object> map)throws Exception
+    {
+
+        Float east_boundary =  Float.parseFloat((String) map.get("east_boundary"));
+        Float west_boundary =  Float.parseFloat((String)map.get("west_boundary"));
+        Float southern_boundary =  Float.parseFloat((String)map.get("southern_boundary"));
+        Float northern_boundary = Float.parseFloat((String)map.get("northern_boundary"));
+
+       // System.out.printf("east_boundary"+east_boundary);
+       // System.out.printf("east_boundary"+west_boundary);
+       // System.out.printf("east_boundary"+southern_boundary);
+        //System.out.printf("east_boundary"+northern_boundary);
+        List<Marker> markers = markerService.findByDistance(east_boundary,west_boundary,southern_boundary,northern_boundary);
+        //System.out.println(markers.size());
+        return parseToJSON(markers).toString();
+    }
+
     public JSONObject parseToJSON(List<Marker> markers) throws JSONException {
 
         JSONArray ja = new JSONArray(); //어레이

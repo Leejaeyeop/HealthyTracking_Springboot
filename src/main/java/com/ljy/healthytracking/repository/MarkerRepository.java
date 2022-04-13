@@ -24,4 +24,7 @@ public interface MarkerRepository extends JpaRepository<Marker,Integer> {
 
     @Query(value = "select * from mountains m where m.noted= 'O'",nativeQuery = true)
     List<Marker> findByNoted();
+
+    @Query(value = "select * from mountains m where m.x <= :Eboundary and m.x>= :Wboundary and m.y <= :Nboundary and m.y>= :Sboundary ",nativeQuery = true)
+    List<Marker> findByDistance(@Param("Eboundary") Float east_boundary,@Param("Wboundary") Float west_boundary,@Param("Sboundary") Float southern_boundary,@Param("Nboundary") Float northern_boundary);
 }
